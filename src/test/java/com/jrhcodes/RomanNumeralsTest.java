@@ -1,7 +1,6 @@
 package com.jrhcodes;
 
 import com.jrhcodes.roman.RomanNumerals;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -52,10 +51,9 @@ public class RomanNumeralsTest {
             "MMCMIII,2903",
             "MMMCMXCIX,3999"})
 
-    public void testGetValue(String roman, String decimal) {
-        int value = Integer.parseInt(decimal);
-        assertEquals(value, RomanNumerals.fromRomanNumeralsAsString(roman) );
-    };
+    public void testFromRomanNumeralsAsString(String roman, int value) {
+        assertEquals(value, RomanNumerals.fromRomanNumeralsAsString(roman));
+    }
 
     @ParameterizedTest
     @CsvSource({"I,1",
@@ -100,7 +98,8 @@ public class RomanNumeralsTest {
             "CLXII,162",
             "MMCMIII,2903",
             "MMMCMXCIX,3999"})
-    public void testGetRomanNumeralsAsString(String roman, int value) {
-        assertEquals(roman, RomanNumerals.toRomanNumeralsAsString(value) );
-    };
+    public void testToRomanNumeralsAsString(String roman, int value) {
+        assertEquals(roman, RomanNumerals.toRomanNumeralsAsString(value));
+    }
+
 };

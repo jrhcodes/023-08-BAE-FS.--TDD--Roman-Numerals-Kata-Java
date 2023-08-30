@@ -1,7 +1,48 @@
 package com.jrhcodes.roman;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RomanNumerals {
-    public static int fromRomanNumeralsAsString(String romanNumerals) { return 0; };
+
+    private static final Map<Character, Integer> romanToDecimalMap = new HashMap<>();
+
+    static {
+        romanToDecimalMap.put('I', 1);
+        romanToDecimalMap.put('V', 5);
+        romanToDecimalMap.put('X', 10);
+        romanToDecimalMap.put('L', 50);
+        romanToDecimalMap.put('C', 100);
+        romanToDecimalMap.put('D', 500);
+        romanToDecimalMap.put('M', 1000);
+    }
+
+    public static int fromRomanNumeralsAsString(String romanNumerals) {
+
+        int result = 0;
+
+        for (int i = 0; i < romanNumerals.length(); i++) {
+
+            int currentNumeralValue = romanToDecimalMap.get(romanNumerals.charAt(i));
+
+            final int lastNumeralIndex = romanNumerals.length() - 1;
+
+            if (i < lastNumeralIndex) {
+                int nextValue = romanToDecimalMap.get(romanNumerals.charAt(i + 1));
+
+                if (currentNumeralValue < nextValue) {
+                    result -= currentNumeralValue;
+                } else {
+                    result += currentNumeralValue;
+                }
+            } else {
+                result += currentNumeralValue;
+            }
+        }
+
+        return result;
+    }
+
     public static String toRomanNumeralsAsString(int value) {
         final String[][] mapToRoman = {
                 {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
@@ -25,4 +66,6 @@ public class RomanNumerals {
         return String.valueOf(romanValue);
     }
 }
+
+
 
