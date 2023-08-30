@@ -63,7 +63,7 @@ public class RomanNumerals {
         return result;
     }
 
-    //  version demonstrated in class
+//  version demonstrated in class
 //    public static String toRomanNumeralsAsString(int value) {
 //
 //        if (value < 1 || value > 3999) {
@@ -91,13 +91,12 @@ public class RomanNumerals {
             throw new IllegalArgumentException("Value supplied is out of range 0...3999");
         }
 
-
         StringBuilder returnValue = new StringBuilder();
         String[] digits = String.valueOf(value).split("");
 
-        int powerOf10 = digits.length-1;
+        int powerOf10 = digits.length - 1;
 
-        for( String digit: digits ) {
+        for (String digit : digits) {
             returnValue.append(decimalToRomanMap[powerOf10][Integer.parseInt(digit)]);
             --powerOf10;
         }
