@@ -2,10 +2,8 @@ package com.jrhcodes;
 
 import com.jrhcodes.roman.RomanNumerals;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,7 +54,7 @@ public class RomanNumeralsTest {
 
     public void testGetValue(String roman, String decimal) {
         int value = Integer.parseInt(decimal);
-        assertEquals(value, RomanNumerals.getValue(roman) );
+        assertEquals(value, RomanNumerals.fromRomanNumeralsAsString(roman) );
     };
 
     @ParameterizedTest
@@ -103,6 +101,6 @@ public class RomanNumeralsTest {
             "MMCMIII,2903",
             "MMMCMXCIX,3999"})
     public void testGetRomanNumeralsAsString(String roman, int value) {
-        assertEquals(roman, RomanNumerals.getRumanNumeralsAsString(value) );
+        assertEquals(roman, RomanNumerals.toRomanNumeralsAsString(value) );
     };
 };
