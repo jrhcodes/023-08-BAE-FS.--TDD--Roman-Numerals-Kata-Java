@@ -63,26 +63,49 @@ public class RomanNumerals {
         return result;
     }
 
+    //  version demonstrated in class
+//    public static String toRomanNumeralsAsString(int value) {
+//
+//        if (value < 1 || value > 3999) {
+//            throw new IllegalArgumentException("Value supplied is out of range 0...3999");
+//        }
+//
+//        StringBuilder romanValue = new StringBuilder();
+//        // String romanValue = "";
+//        int powerOf10 = 0;
+//
+//        do {
+//            int digit = value % 10;
+//            romanValue.insert(0, decimalToRomanMap[powerOf10][digit]);
+//            // romanValue = mapToRoman[powerOf10][digit] + romanValue;
+//            value /= 10;
+//            powerOf10 += 1;
+//        } while (value > 0);
+//
+//        return String.valueOf(romanValue);
+//    }
+
     public static String toRomanNumeralsAsString(int value) {
 
         if (value < 1 || value > 3999) {
             throw new IllegalArgumentException("Value supplied is out of range 0...3999");
         }
 
-        StringBuilder romanValue = new StringBuilder();
-        // String romanValue = "";
-        int powerOf10 = 0;
 
-        do {
-            int digit = value % 10;
-            romanValue.insert(0, decimalToRomanMap[powerOf10][digit]);
-            // romanValue = mapToRoman[powerOf10][digit] + romanValue;
-            value /= 10;
-            powerOf10 += 1;
-        } while (value > 0);
+        StringBuilder returnValue = new StringBuilder();
+        String[] digits = String.valueOf(value).split("");
 
-        return String.valueOf(romanValue);
+        int powerOf10 = digits.length-1;
+
+        for( String digit: digits ) {
+            returnValue.append(decimalToRomanMap[powerOf10][Integer.parseInt(digit)]);
+            --powerOf10;
+        }
+
+        return String.valueOf(returnValue);
+
     }
+
 }
 
 
