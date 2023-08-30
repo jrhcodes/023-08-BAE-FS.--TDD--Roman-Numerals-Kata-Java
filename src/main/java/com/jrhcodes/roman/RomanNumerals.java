@@ -5,6 +5,12 @@ import java.util.Map;
 
 public class RomanNumerals {
 
+    static final String[][] decimalToRomanMap = {
+            {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+            {"", "M", "MM", "MMM", "MMMM"}
+    };
     private static final Map<Character, Integer> romanToDecimalMap = new HashMap<>();
 
     static {
@@ -19,12 +25,12 @@ public class RomanNumerals {
 
     public static int fromRomanNumeralsAsString(String romanNumerals) {
 
-        if( romanNumerals.isBlank()) {
+        if (romanNumerals.isBlank()) {
             throw new IllegalArgumentException("Empty string passed.");
         }
 
 
-        if( !romanNumerals.matches("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")) {
+        if (!romanNumerals.matches("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")) {
             throw new IllegalArgumentException("Value contains characters other than Roman numerals. ");
         }
 
@@ -51,16 +57,10 @@ public class RomanNumerals {
 
         return result;
     }
-    static final String[][] decimalToRomanMap = {
-            {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
-            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
-            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
-            {"", "M", "MM", "MMM", "MMMM"}
-    };
 
     public static String toRomanNumeralsAsString(int value) {
 
-        if( value <1 || value > 3999) {
+        if (value < 1 || value > 3999) {
             throw new IllegalArgumentException("Value supplied is out of range 0...3999");
         }
 
