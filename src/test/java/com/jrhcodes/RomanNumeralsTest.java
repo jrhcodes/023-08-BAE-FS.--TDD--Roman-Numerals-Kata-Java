@@ -1,12 +1,18 @@
 package com.jrhcodes;
 
 import com.jrhcodes.roman.RomanNumerals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
 
 public class RomanNumeralsTest {
+
     @ParameterizedTest
     @CsvSource({"I,1",
             "XII,12",
@@ -100,6 +106,12 @@ public class RomanNumeralsTest {
             "MMMCMXCIX,3999"})
     public void testToRomanNumeralsAsString(String roman, int value) {
         assertEquals(roman, RomanNumerals.toRomanNumeralsAsString(value));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 4000, -1, 32767,-32767})
+    public void testToRomanNumeralsAsStringValueOutOfRange(int value){
+        assertThrowsExactly(IllegalArgumentException.class, () -> RomanNumerals.toRomanNumeralsAsString(value));
     }
 
 };

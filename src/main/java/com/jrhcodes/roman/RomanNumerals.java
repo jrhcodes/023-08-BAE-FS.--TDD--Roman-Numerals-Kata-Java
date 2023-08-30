@@ -42,14 +42,18 @@ public class RomanNumerals {
 
         return result;
     }
+    static final String[][] decimalToRomanMap = {
+            {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+            {"", "M", "MM", "MMM", "MMMM"}
+    };
 
     public static String toRomanNumeralsAsString(int value) {
-        final String[][] mapToRoman = {
-                {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
-                {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
-                {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
-                {"", "M", "MM", "MMM", "MMMM"}
-        };
+
+        if( value <1 || value > 3999) {
+            throw new IllegalArgumentException("Value supplied is out of range 0...3999");
+        }
 
         StringBuilder romanValue = new StringBuilder();
         // String romanValue = "";
@@ -57,7 +61,7 @@ public class RomanNumerals {
 
         do {
             int digit = value % 10;
-            romanValue.insert(0, mapToRoman[powerOf10][digit]);
+            romanValue.insert(0, decimalToRomanMap[powerOf10][digit]);
             // romanValue = mapToRoman[powerOf10][digit] + romanValue;
             value /= 10;
             powerOf10 += 1;
