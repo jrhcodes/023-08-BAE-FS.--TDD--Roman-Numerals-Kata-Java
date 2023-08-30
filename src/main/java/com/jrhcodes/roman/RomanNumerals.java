@@ -25,6 +25,11 @@ public class RomanNumerals {
 
     public static int fromRomanNumeralsAsString(String romanNumerals) {
 
+        if (romanNumerals == null) {
+            throw new IllegalArgumentException("Null string passed.");
+        }
+
+
         if (romanNumerals.isBlank()) {
             throw new IllegalArgumentException("Empty string passed.");
         }

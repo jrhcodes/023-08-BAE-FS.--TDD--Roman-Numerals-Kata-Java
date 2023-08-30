@@ -1,6 +1,7 @@
 package com.jrhcodes;
 
 import com.jrhcodes.roman.RomanNumerals;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -34,6 +35,11 @@ public class RomanNumeralsTest {
     @ValueSource(strings = {"", "    ", "MCHAMMER", "M M", "ABCD", "123"})
     public void testFromRomanNumeralsAsStringInvalidArgs(String value) {
         assertThrowsExactly(IllegalArgumentException.class, () -> RomanNumerals.fromRomanNumeralsAsString(value));
+    }
+
+    @Test
+    public void testFromRomanNumeralsAsStringNullArg() {
+        assertThrowsExactly(IllegalArgumentException.class, () -> RomanNumerals.fromRomanNumeralsAsString(null));
     }
 
 };
