@@ -19,6 +19,15 @@ public class RomanNumerals {
 
     public static int fromRomanNumeralsAsString(String romanNumerals) {
 
+        if( romanNumerals.isBlank()) {
+            throw new IllegalArgumentException("Empty string passed.");
+        }
+
+
+        if( !romanNumerals.matches("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")) {
+            throw new IllegalArgumentException("Value contains characters other than Roman numerals. ");
+        }
+
         int result = 0;
 
         for (int i = 0; i < romanNumerals.length(); i++) {

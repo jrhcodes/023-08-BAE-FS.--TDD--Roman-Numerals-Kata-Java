@@ -110,8 +110,14 @@ public class RomanNumeralsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 4000, -1, 32767,-32767})
-    public void testToRomanNumeralsAsStringValueOutOfRange(int value){
+    public void testToRomanNumeralsAsStringInvalidArgs(int value){
         assertThrowsExactly(IllegalArgumentException.class, () -> RomanNumerals.toRomanNumeralsAsString(value));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings= {"", "    ", "MCHAMMER", "M M", "ABCD", "123"})
+    public void testFromRomanNumeralsAsStringInvalidArgs(String value) {
+        assertThrowsExactly(IllegalArgumentException.class, () -> RomanNumerals.fromRomanNumeralsAsString(value));
     }
 
 };
